@@ -6,3 +6,6 @@ export const PATH2 = 'api/clean-tb-preliquidacion-tmp-historico';
 
 
 export const HOST_VISIT = 'http://localhost:3002'; // este es de visitar urls
+
+
+export const HOST_MIGRATE_DATA_ECONTROL = 'http://localhost:4501/api/v1';

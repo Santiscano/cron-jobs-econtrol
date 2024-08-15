@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { HOST, PATH1, PATH2 } from './config-apiTriggerEcontrol';
+import { HOST, HOST_MIGRATE_DATA_ECONTROL, PATH1, PATH2 } from './config-apiTriggerEcontrol';
 import { connection } from '../../config/db/mysql';
 
 const url = `${HOST}/api/count-pedidos-digitalizados`;
@@ -106,3 +106,20 @@ export const MIGRATE_TB_PRELIQUIDACION_TMP_HISTORICO = async () => {
         await connection.query('INSERT INTO TB_CRONJOB (LOG) VALUES (?)', [JSON.stringify(error.response.data.message)]);
     }
 };
+
+
+export const MIGRATE_TB_TRACKING_PAQUETEO = async () => {
+    try {
+        console.log('migrando tracking paqueteo');
+        const url = `${HOST_MIGRATE_DATA_ECONTROL}/resources/migrate-update-tracking-paqueteo`;
+        const response = await axios.post(url);
+        console.log('response', response.data);
+        await connection.query('INSERT INTO TB_CRONJOB (CONSECUTIVO, LOG) VALUES (?,?)', [
+            'Insercion de tracking paqueteo',
+            JSON.stringify(response.data)
+        ]);
+    } catch (error) {
+        // @ts-ignore
+        console.log('error', error.response.data);
+    }
+}
