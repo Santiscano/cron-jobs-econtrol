@@ -8,11 +8,8 @@ import { TEST_MIGRATE } from './apis/test';
 import { VISIT_URL } from './global/visitUrl';
 
 // * ================== POR MINUTOS ================== * //
-// migrar cada 15 minutos la tabla TB_TRACKING_PAQUETEO de madre a espejo
-schedule( '*/10 * * * *', MIGRATE_TB_TRACKING_PAQUETEO );
-
-
-
+// migrar cada 10 minutos la tabla TB_TRACKING_PAQUETEO de madre a espejo
+// schedule( '*/10 * * * *', MIGRATE_TB_TRACKING_PAQUETEO );
 
 // * ================== POR HORAS ================== * //
 // * ================== POR DIAS ================== * //
